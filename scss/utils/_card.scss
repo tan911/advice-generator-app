@@ -49,13 +49,14 @@
   font-weight: 100;
   padding: 2em 0;
   // color: colors.$colors-primary-dark;
-  color: transparent;
   text-transform: uppercase;
   letter-spacing: 3px;
 
   background-image: var(--gradient);
   background-clip: text;
+  color: transparent;
   background-size: 400%;
+  -webkit-background-clip: text;
 
   @include animate.animate(bg-animation);
 
