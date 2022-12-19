@@ -53,6 +53,7 @@
   letter-spacing: 3px;
 
   background-image: var(--gradient);
+  background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   background-size: 400%;
