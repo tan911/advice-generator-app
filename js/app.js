@@ -16,6 +16,4 @@ async function adviceAPI() {
   }
 }
 
-const btn = document
-  .querySelector("button")
-  .addEventListener("click", adviceAPI);
+document.querySelector("button").addEventListener("click", adviceAPI);

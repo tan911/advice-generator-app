@@ -1,15 +1,25 @@
 @use "../globals/" as colors;
 @use "../globals/" as queries;
+@use "../globals/base" as animate;
 
 .card {
   position: relative;
   width: 90%;
   color: colors.$colors-primary-light;
-  background-color: colors.$color-grayish-dark;
+  // background-color: colors.$color-grayish-dark;
+  background-image: linear-gradient(
+    to right bottom,
+    colors.$color-grayish-blue,
+    colors.$color-dark-blue
+  );
   padding: 1rem 1.5rem;
   text-align: center;
-  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0.5rem 0.5rem rgba(colors.$color-dark-blue, 0.2);
   border-radius: 10px;
+  animation-name: slide-up;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
 
   @include queries.respond(width-m-size) {
     width: 100%;
@@ -20,15 +30,44 @@
     max-width: 31.25rem;
     padding: 1.5rem;
   }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(10%);
+    }
+
+    to {
+      opacity: none;
+      transform: none;
+    }
+  }
 }
 
 .card__advice__number {
   font-size: 0.7rem;
   font-weight: 100;
   padding: 2em 0;
-  color: colors.$colors-primary-dark;
+  // color: colors.$colors-primary-dark;
+  color: transparent;
   text-transform: uppercase;
   letter-spacing: 3px;
+
+  background-image: var(--gradient);
+  background-clip: text;
+  background-size: 400%;
+
+  @include animate.animate(bg-animation);
+
+  @keyframes bg-animation {
+    from {
+      background-position: left;
+    }
+
+    to {
+      background-position: right;
+    }
+  }
 }
 
 .card__advice {
@@ -48,7 +87,7 @@ button {
   left: 50%;
   transform: translate(-50%, 0);
   padding: 0;
-  background-color: colors.$colors-primary-dark;
+  // background-color: colors.$colors-primary-dark;
   border: 0;
   height: 60px;
   width: 60px;
@@ -59,8 +98,56 @@ button {
   transition: all 0.3s;
   cursor: pointer;
 
-  &:hover,
-  &:active {
-    box-shadow: 0 0 1rem 1rem rgba(colors.$colors-primary-dark, 0.25);
+  background-image: var(--gradient);
+  background-size: 400%;
+
+  @include animate.animate(bg-animation);
+
+  &:hover {
+    box-shadow: 0 0 1rem 1rem rgba(#ff416c, 0.25);
+    animation-play-state: paused;
+  }
+
+  @keyframes bg-animation {
+    from {
+      background-position: left;
+    }
+
+    to {
+      background-position: right;
+    }
+  }
+
+  & svg {
+    @include animate.animate(rotate-svg);
+
+    &:hover {
+      animation-play-state: paused;
+    }
+
+    & path {
+      fill: #1f2632;
+      @include animate.animate(color);
+
+      @keyframes color {
+        from {
+          fill: #c7d2fe;
+        }
+
+        to {
+          fill: #1f2632;
+        }
+      }
+    }
+
+    @keyframes rotate-svg {
+      from {
+        transform: roate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
   }
 }

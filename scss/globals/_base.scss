@@ -76,11 +76,32 @@ select {
 }
 
 // COLORS
-$colors-primary-light: hsl(193, 38%, 86%);
+$colors-primary-light: hsl(192, 35%, 86%);
 $colors-primary-dark: hsl(150, 100%, 66%);
 $color-grayish-blue: hsl(217, 19%, 38%);
 $color-grayish-dark: hsl(217, 19%, 24%);
 $color-dark-blue: hsl(218, 23%, 16%);
+
+:root {
+  --gradient: linear-gradient(
+    40deg,
+    #fdeff9,
+    #ec38bc,
+    #7303c0,
+    #03001e,
+    #ff416c,
+    #ff4b2b
+  );
+
+  --text-light-gradient: linear-gradient(
+    40deg,
+    #cfe3e8,
+    #93c5fd,
+    #c7d2fe,
+    #fafafa,
+    #cbd5e1
+  );
+}
 
 // MEDIA QUEIRIE
 @mixin respond($breakpoint) {
@@ -97,9 +118,19 @@ $color-dark-blue: hsl(218, 23%, 16%);
   }
 }
 
+// ANIMATION
+@mixin animate($name) {
+  animation-name: $name;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
 body {
   font-family: customFont, sans-serif;
-  background-color: $color-dark-blue;
+  background-color: #181d26;
 
   display: flex;
   justify-content: center;
